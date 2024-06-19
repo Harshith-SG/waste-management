@@ -1,7 +1,6 @@
 import os
 import cv2
 import numpy as np
-import imutils
 import matplotlib.pyplot as plt
 
 def show_contours_only(image, contours):
