@@ -1,2 +1,5 @@
 env
 environ
+augmented_train/**
+augmented_masks/**
+backup/**
