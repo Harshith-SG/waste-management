@@ -1,7 +1,9 @@
 env
 environ
-augmented_train/**
-augmented_masks/**
+augmented_train
+augmented_masks
 backup/
-path_to_save_overlayed_images/
-masks/**
+path_to_save_overlayed_images
+masks
+contour_output
+output
