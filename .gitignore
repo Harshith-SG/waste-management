@@ -3,3 +3,5 @@ environ
 augmented_train/**
 augmented_masks/**
 backup/**
+path_to_save_overlayed_images**
+masks/**
