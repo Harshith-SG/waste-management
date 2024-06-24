@@ -6,4 +6,5 @@ backup/
 path_to_save_overlayed_images
 masks
 contour_output
+save_model.pth
 output
