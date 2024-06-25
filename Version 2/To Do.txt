@@ -1,2 +1,3 @@
 Apply Contours to adaptive Superpixels
 Train low level Segmentation model to generate masks
+    
