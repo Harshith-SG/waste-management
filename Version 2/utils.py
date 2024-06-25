@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from skimage.color import label2rgb
 
 def adaptive_slic(image, n_segments=2000, compactness=10, resize=(256,256), 
-                  adaptive_compactness=True, display=2):
+                  adaptive_compactness=True, display=2, ret=True):
     img_resized = cv2.resize(image, resize)
     if adaptive_compactness:
         # Compute gradient magnitude
@@ -65,3 +65,6 @@ def adaptive_slic(image, n_segments=2000, compactness=10, resize=(256,256),
         plt.axis('off')
         plt.tight_layout()
         plt.show()
+
+    if ret:
+        return superpixels_rgb
