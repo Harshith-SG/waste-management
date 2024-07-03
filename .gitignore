@@ -6,5 +6,6 @@ backup/
 path_to_save_overlayed_images
 masks
 contour_output
+adaptive_superpixeled_images
 save_model.pth
 output
