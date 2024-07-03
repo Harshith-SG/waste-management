@@ -80,3 +80,43 @@ def save_images(image, folder, filename):
     directory = os.path.join(folder, image_name)
     cv2.imwrite(directory, image)
     return
+
+def display_image(image, original=None, show_original=False):
+    if show_original:
+        plt.figure(figsize=(10,20),facecolor='black')
+
+        plt.subplot(1,2,1)
+        plt.imshow(original)
+        plt.title('Original Image', color='white')
+        plt.axis('off')
+
+        plt.subplot(1,2,2)
+        plt.imshow(image)
+        plt.title('Adaptive Superpixels', color='white')
+        plt.axis('off')
+
+        plt.tight_layout()
+        plt.show()
+
+    else:
+        plt.figure(figsize=(10,10),facecolor='black', edgecolor='black')
+        plt.imshow(image)
+        plt.title('Modified', color='white')
+        plt.axis('off')
+        plt.show()
+
+def show_contours_only(image, contours, display=False):
+    # Create a black background
+    black_background = np.zeros_like(image)
+
+    # Draw contours on the black background
+    cv2.drawContours(black_background, contours, -1, (255, 255, 255), 3)
+
+    if display:
+        # Display the black background with white contours
+        plt.imshow(cv2.cvtColor(black_background, cv2.COLOR_BGR2RGB))
+        plt.title('Black Background')
+        plt.axis('off')  # Hide the axis
+        plt.show()
+
+    return cv2.cvtColor(black_background, cv2.COLOR_BGR2RGB)
