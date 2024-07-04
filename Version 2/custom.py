@@ -73,8 +73,6 @@ def adaptive_slic(image, n_segments=2000, compactness=10, resize=(256,256),
     else:
         return superpixels
     
-
-
 def save_images(image, folder, filename):
     if not os.path.exists(folder):
         os.makedirs(folder)
@@ -124,7 +122,6 @@ def show_contours_only(image, contours, display=False):
 
     return cv2.cvtColor(black_background, cv2.COLOR_BGR2RGB)
 
-
 def drawbb(image, contours, display=True):
     dimensions=[]
     image_copy=image.copy()
@@ -145,7 +142,6 @@ def drawbb(image, contours, display=True):
         plt.show()
 
     print("Dimensions:", dimensions)
-
 
 def filtered_contours(img, display=False):
     image=img.copy()
