@@ -123,3 +123,56 @@ def show_contours_only(image, contours, display=False):
         plt.show()
 
     return cv2.cvtColor(black_background, cv2.COLOR_BGR2RGB)
+
+
+def drawbb(image, contours, display=True):
+    dimensions=[]
+    image_copy=image.copy()
+    for contour in contours:
+        # Get bounding box coordinates
+        x, y, w, h = cv2.boundingRect(contour)
+        
+        # Draw bounding box (optional)
+        cv2.rectangle(image_copy, (x, y), (x + w, y + h), (0, 0, 255), 10)
+        
+        # Calculate dimensions and add to list
+        dimensions.append((w, h))
+
+    if display:
+        plt.imshow(cv2.cvtColor(image_copy, cv2.COLOR_BGR2RGB))
+        plt.title('BB')
+        plt.axis('off')  # Hide the axis
+        plt.show()
+
+    print("Dimensions:", dimensions)
+
+
+def filtered_contours(img, display=False):
+    image=img.copy()
+    cordnt_list = []
+    # kernel = np.ones((5, 5), np.uint8) 
+
+    t_lower = 50  # Lower Threshold 
+    t_upper = 150  # Upper threshold 
+  
+# Applying the Canny Edge filter 
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    edge = cv2.Canny(gray, t_lower, t_upper) 
+    b_kernel=(3,3)
+    blur=cv2.GaussianBlur(edge,b_kernel,0)
+    # dilated = cv2.dilate(blur,None, iterations=2)
+    # eroded = cv2.erode(dilated,None,iterations=1)
+    contours, hierarchy = cv2.findContours(blur, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_TC89_KCOS)  
+    filtered_contours = [contour for contour in contours if cv2.contourArea(contour) >= 4000]
+
+    image_copy=image.copy()
+
+    if display:
+
+        cv2.drawContours(image_copy, filtered_contours, -1, (0, 255, 0), 3) 
+        plt.imshow(cv2.cvtColor(image_copy, cv2.COLOR_BGR2RGB))
+        plt.title('filter by area')
+        plt.axis('off')  # Hide the axis
+        plt.show()
+
+    return filtered_contours 
